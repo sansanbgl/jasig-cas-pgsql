@@ -107,7 +107,7 @@
     <bean id="dataSource"
           class="com.mchange.v2.c3p0.ComboPooledDataSource"
           p:driverClass="org.postgresql.Driver"
-          p:jdbcUrl="jdbc:postgresql://localhost/cas"
+          p:jdbcUrl="jdbc:postgresql://10.199.14.33:5432/cas"
           p:user="postgres"
           p:password="postgres" />
     <!--<bean id="dataSource"-->
@@ -201,6 +201,23 @@
     <bean id="auditTrailManager" class="com.github.inspektr.audit.support.Slf4jLoggingAuditTrailManager" />
 
     <bean id="healthCheckMonitor" class="org.jasig.cas.monitor.HealthCheckMonitor" p:monitors-ref="monitorsList" />
+
+    <bean id="singleRowJdbcPersonAttributeDao"
+          class="org.jasig.services.persondir.support.jdbc.SingleRowJdbcPersonAttributeDao">
+        <constructor-arg index="0" ref="dataSource" />
+        <constructor-arg index="1" value="SELECT * FROM users WHERE {0}" />
+        <property name="queryAttributeMapping">
+            <map>
+                <entry key="username" value="username" />
+            </map>
+        </property>
+        <property name="resultAttributeMapping">
+            <map>
+                <entry key="username" value="username" />
+                <entry key="roles" value="roles" />
+            </map>
+        </property>
+    </bean>
 
     <util:list id="monitorsList">
         <bean class="org.jasig.cas.monitor.MemoryMonitor" p:freeMemoryWarnThreshold="10" />

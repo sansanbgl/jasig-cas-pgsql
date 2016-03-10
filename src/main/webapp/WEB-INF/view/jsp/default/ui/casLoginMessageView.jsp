@@ -19,7 +19,7 @@
     under the License.
 
 --%>
-<jsp:directive.include file="includes/top.jsp" />
+<jsp:directive.include file="includes/top_custom.jsp" />
 
 <div id="msg" class="warn">
   <h2>Authentication Succeeded with Warnings</h2>
@@ -34,4 +34,4 @@
  <a class="button" href="login?execution=${flowExecutionKey}&_eventId=proceed">Continue</a>
 </div>
 
-<jsp:directive.include file="includes/bottom.jsp" />
+<jsp:directive.include file="includes/bottom_custom.jsp" />
