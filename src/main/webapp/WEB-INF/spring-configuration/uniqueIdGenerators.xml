@@ -49,5 +49,16 @@
 			key="org.jasig.cas.authentication.principal.SimpleWebApplicationServiceImpl"
 			value-ref="serviceTicketUniqueIdGenerator" />
 	</util:map>
+	<bean id="samlServiceTicketUniqueIdGenerator" class="org.jasig.cas.support.saml.util.SamlCompliantUniqueTicketIdGenerator">
+		<constructor-arg index="0" value="https://localhost:8443" />
+	</bean>
 
+	<util:map id="uniqueIdGeneratorsMap">
+		<entry
+				key="org.jasig.cas.authentication.principal.SimpleWebApplicationServiceImpl"
+				value-ref="serviceTicketUniqueIdGenerator" />
+		<entry
+				key="org.jasig.cas.support.saml.authentication.principal.SamlService"
+				value-ref="samlServiceTicketUniqueIdGenerator" />
+	</util:map>
 </beans>
