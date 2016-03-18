@@ -107,7 +107,7 @@
     <bean id="dataSource"
           class="com.mchange.v2.c3p0.ComboPooledDataSource"
           p:driverClass="org.postgresql.Driver"
-          p:jdbcUrl="jdbc:postgresql://10.199.14.33:5432/cas"
+          p:jdbcUrl="jdbc:postgresql://10.199.14.33:5432/sdid_restore?currentSchema=man_akses"
           p:user="postgres"
           p:password="postgres" />
     <!--<bean id="dataSource"-->
@@ -123,11 +123,17 @@
           c:encodingAlgorithm="MD5"
           p:characterEncoding="UTF-8" />
 
+    <!--<bean id="SearchModeSearchDatabaseAuthenticationHandler"-->
+          <!--class="org.jasig.cas.adaptors.jdbc.SearchModeSearchDatabaseAuthenticationHandler"-->
+          <!--p:dataSource-ref="dataSource"-->
+          <!--p:passwordEncoder-ref="passwordEncoder"-->
+          <!--p:tableUsers="users"-->
+          <!--p:fieldUser="username"-->
+          <!--p:fieldPassword="password" />-->
     <bean id="SearchModeSearchDatabaseAuthenticationHandler"
           class="org.jasig.cas.adaptors.jdbc.SearchModeSearchDatabaseAuthenticationHandler"
           p:dataSource-ref="dataSource"
-          p:passwordEncoder-ref="passwordEncoder"
-          p:tableUsers="users"
+          p:tableUsers="pengguna"
           p:fieldUser="username"
           p:fieldPassword="password" />
 
